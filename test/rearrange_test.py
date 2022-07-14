@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
 
-from cgi import test
-from cmath import exp
 from rearrange import rearrange_name
 import unittest
 
@@ -22,5 +20,12 @@ class TestRearrange(unittest.TestCase):
         testcase = "Johnson, Mike R."
         expected = "Mike R. Johnson"
         self.assertEqual(rearrange_name(testcase), expected)
+    
+    def test_one_name(self):
+        testcase = "Roberto"
+        expected = "Roberto"
+        self.assertEqual(rearrange_name(testcase), expected)
 
+    def test_invalid_input(self):
+        self.assertRaises(ValueError, rearrange_name, 1234)
 unittest.main()
