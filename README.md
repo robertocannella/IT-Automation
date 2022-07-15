@@ -172,6 +172,9 @@ username.  The values will be nested dictionaries containg the LOGTYPE as a key 
 
 The dictionaries will be sorted using python dictionary methods as well as the ```operator.itemgetter()``` method. [look here for more info](https://docs.python.org/3/library/operator.html).  Btasically it gets the item an index and returns it.  In this project we will be returning it to the sorted dictionary method to sort by value, not key.
 
+The error and info dictionaries should be sorted by the number of errors from most common to least common.
+The user dictionary should be sorted by username.
+
 Here a look at our code using dictionaries instead of a list:
 
 ```
