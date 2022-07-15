@@ -110,24 +110,48 @@ output:
 <_sre.SRE_Match object; span=(29, 57), match='ticky: INFO: Created ticket '>
 ```
 
-Start fetching logs of ticky for a specific username. We'll need them in later sections. Here's what we plan on doing
-
-1) set the user to search for
-2) create an empty dictionary to 
-2) open the log file
-3) store the contents inside a 'file' object
-4) Iterate through each log
+Start fetching logs of ticky for a specific username. We'll need them in later sections. Here's what we plan on doing in the script.  We'll focus on just having the ability to parse the file for specified users and errors:
 
 
+1) Set the user to search for.
+2) Create an empty list to store the errors.
+3) Open the syslog file and store contents in a file object.
+4) Iterate through each log for matching.
+    * a) match using regex to any logtype ```(ERROR|INFO)```
+    * b) match using regex to any description ```([\w ]*)```
+    * b) match using regex to any user ```\(([\w ].*)\)``` 
+5) Conditionally add the error to our list.
+
+
+Here's what we think the code will look like initially.  
 ```
-user = 'username'
+#!/usr/bin/env python3
+
+import os
+import re
+
+home_dir = os.path.expanduser('~')
+working_dir = "."
+log_file = os.path.join(home_dir, working_dir, 'syslog.txt')
+
 
 error_list = []
+username = "ahmed.miller"
 
-with open(log_file, mode='r',encoding='UTF-8') as file:
-    for log in file.readlines():
-        re.search(r"ticky: ERROR: ([\w ]*).*\(([\w ]*)\)", line)
-        if username in result.groups():
-            error_list.append(line)
+def parse_log(log_file):
+    with open(log_file, mode='r',encoding='UTF-8') as file:
+        for log in file.readlines():
+            result = re.search(r"ticky: (ERROR|INFO) ([\w ]*).*\(([\w ].*)\)", log)
+            if result is None:
+                continue
+            if username in result.groups():
+                error_list.append(log)
+    return error_list
+
+
+error_list = parse_log(log_file)
+for item in error_list:
+    print(item, end = '')
+print(len(error_list))
             
 ```
