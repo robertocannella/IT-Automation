@@ -78,5 +78,3 @@ with open (per_user_csv, "w", newline='') as csvfile:
     writer.writeheader()
     for tup in sorted_per_user:
         writer.writerow({'Username': str(tup[0]), 'INFO': str(tup[1]['INFO']), 'ERROR': str(tup[1]['ERROR'])})
-
-pprint(sorted_per_user)
