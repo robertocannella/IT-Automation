@@ -230,7 +230,10 @@ def parse_log(log_file):
 error_dict,info_dict, per_user_dict = parse_log(log_file)
 # for item in error_list:
 #     print(item, end = '')
-print(per_user_dict, end ='')
+sorted_error = sorted(error_dict.items(), key=operator.itemgetter(1), reverse=True)
+sorted_per_user = sorted(per_user_dict.items())
+pprint(sorted_error)
+pprint(sorted_per_user)
 ```
 <hr>
 
