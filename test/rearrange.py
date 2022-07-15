@@ -2,10 +2,16 @@
 
 import re
 
+
 def rearrange_name(name):
+    if type(name) is not str:
+        raise ValueError('Input must be a string')
+
+
     result = re.search('^([\w .]*), ([\w .]*)$', name)
+    print(result)
     if result is None:
-            return ''
+            return name
     return "{} {}".format(result[2],result[1])
 
 
