@@ -3,18 +3,22 @@
 import os
 import re
 import operator
+import csv
 from pprint import pprint
 
 home_dir = os.path.expanduser('~')
 working_dir = "."
 log_file = os.path.join(home_dir, working_dir, 'syslog.txt')
 
-
-error_list = []
-username = "ahmed.miller"
+# Python Dictionaries
 error_dict = {}
 per_user_dict = {}
 info_dict = {}
+
+# CSV Exports
+error_dict_csv = 'error_message.csv'
+info_dict_csv = 'info_message.csv'
+per_user_csv = 'user_statistics.csv'
 
 def parse_log(log_file):
     with open(log_file, mode='r',encoding='UTF-8') as file:
@@ -51,7 +55,28 @@ def parse_log(log_file):
 error_dict,info_dict, per_user_dict = parse_log(log_file)
 # for item in error_list:
 #     print(item, end = '')
+
+
+
+
+
 sorted_error = sorted(error_dict.items(), key=operator.itemgetter(1), reverse=True)
 sorted_per_user = sorted(per_user_dict.items())
-pprint(sorted_error)
+
+
+
+with open (error_dict_csv, "w", newline='') as csvfile:
+    fieldnames = ['Error', 'Count']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    for tup in sorted_error:
+        writer.writerow({'Error': str(tup[0]), 'Count': str(tup[1])})
+
+with open (per_user_csv, "w", newline='') as csvfile:
+    fieldnames = ['Username', 'INFO', 'ERROR']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    for tup in sorted_per_user:
+        writer.writerow({'Username': str(tup[0]), 'INFO': str(tup[1]['INFO']), 'ERROR': str(tup[1]['ERROR'])})
+
 pprint(sorted_per_user)

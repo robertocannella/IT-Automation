@@ -237,6 +237,111 @@ pprint(sorted_per_user)
 ```
 <hr>
 
+## Exercise 3
+### Storing Dictiaries as CSV and converting csv to html
+
+
+
+Now that we have our Dictionaries, let's store them into csv files.  For this we will use DictWriter() utility of the csv module.
+
+Let's specify the file names at the top of our script:
+```
+# CSV Exports
+error_dict_csv = 'error_message.csv'
+info_dict_csv = 'info_message.csv'
+per_user_csv = 'user_statistics.csv'
+```
+
+The implementation of writing to csv files is as follows:
+* Open the file for writing and save it into an object: csvfile
+* set the headers of the csv file 
+* instantiate a writer object from the csv class
+* write the header
+* iterate throuth the list provided by the sorted() method ealier
+    * write each row, referencing the specfied dictionary key
+
+```
+with open (error_dict_csv, "w", newline='') as csvfile:
+    fieldnames = ['Error', 'Count']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    for tup in sorted_error:
+        writer.writerow({'Error': str(tup[0]), 'Count': str(tup[1])})
+
+with open (per_user_csv, "w", newline='') as csvfile:
+    fieldnames = ['Username', 'INFO', 'ERROR']
+    writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+    writer.writeheader()
+    for tup in sorted_per_user:
+        writer.writerow({'Username': str(tup[0]), 'INFO': str(tup[1]['INFO']), 'ERROR': str(tup[1]['ERROR'])})
+```
+
+
+This part of the project relies on using a utility on the server named ```csv_to_html.py```.  It does just that.  Below are only the steps required to gain knowledge of that api.  I'll try to include a copy of that file in this repository It's a pretty basic API: 
+
+Create a new csv file
+```
+nano user_emails.csv
+```
+
+Add the following data:
+```
+Full Name, Email Address
+Blossom Gill, blossom@abc.edu
+Hayes Delgado, nonummy@utnisia.com
+Petra Jones, ac@abc.edu
+Oleg Noel, noel@liberomauris.ca
+Ahmed Miller, ahmed.miller@nequenonquam.co.uk
+Macaulay Douglas, mdouglas@abc.edu
+Aurora Grant, enim.non@abc.edu
+Madison Mcintosh, mcintosh@nisiaenean.net
+Montana Powell, montanap@semmagna.org
+Rogan Robinson, rr.robinson@abc.edu
+Simon Rivera, sri@abc.edu
+Benedict Pacheco, bpacheco@abc.edu
+Maisie Hendrix, mai.hendrix@abc.edu
+Xaviera Gould, xlg@utnisia.net
+Oren Rollins, oren@semmagna.com
+Flavia Santiago, flavia@utnisia.net
+Jackson Owens, jackowens@abc.edu
+Britanni Humphrey, britanni@ut.net
+Kirk Nixon, kirknixon@abc.edu
+Bree Campbell, breee@utnisia.net
+```
+
+Save the file by clicking Ctrl-o, Enter key, and Ctrl-x.
+
+Give executable permission to the script file csv_to_html.py.
+```
+sudo chmod +x csv_to_html.py
+```
+To visualize the data in the user_emails.csv file, you have to generate a webpage that'll be served by the webserver running on the machine.
+
+The script csv_to_html.py takes in two arguments, the CSV file, and location that would host the HTML page generated. Give write permission to the directory that would host that HTML page:
+
+
+```
+sudo chmod  o+w /var/www/html
+```
+
+Next, run the script csv_to_html.py script by passing two arguments: user_emails.csv file and the path /var/www/html/. Also, append a name to the path with an HTML extension. This should be the name that you want the HTML file to be created with.
+
+```
+Next, run the script csv_to_html.py script by passing two arguments: user_emails.csv file and the path /var/www/html/. Also, append a name to the path with an HTML extension. This should be the name that you want the HTML file to be created with.
+```
+Replace <html-filename> with the new name.
+
+Navigate to the /var/www/html directory. Here, you'll find an HTML file created with the filename you passed to the above script.
+
+```
+ls /var/www/html
+```
+Now, to view this HTML page, open any web-browser and enter the following URL in the search bar. 
+
+```
+[linux-instance-external-IP]/[html-filename].html
+```
+
 ##  Generating Reports
 
 
