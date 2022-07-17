@@ -1,4 +1,4 @@
-# Debugging Techniques
+# Debugging Techniques Bash/Python
 
 ## General steps
 Ensure documentation through each of the following steps
@@ -19,6 +19,13 @@ Some tools to help find the root cause
     ```
     In the simplest case strace runs the specified command until it exits.  It intercepts and records the system calls which arecalled by a process and the signals which are received by a process.  The name of each system call, its arguments and its return value are printed on standard error or to the filespecified with the -o option. [more...](https://man7.org/linux/man-pages/man1/strace.1.html)
 
+* `psutil` (process and system utilities): a cross-platform library for retrieving information on running processes and system utilization (CPU, memory, disks, network, sensors) in Python. [more...](https://pypi.org/project/psutil/)
+    * `psutil.cpu_percent()`: shows that CPU utilization
+    * `psutil.disk_io_counters()`: byte read and write for disk I/O
+    * `psutil.net_io_counters()`: byte received and send for newtork I/O bandwidth
+
+
+<hr>
 ## Addressing Slowness
 
 Identifying an application bottleneck
