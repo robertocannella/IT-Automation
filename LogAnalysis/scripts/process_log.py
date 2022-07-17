@@ -8,7 +8,7 @@ from pprint import pprint
 
 home_dir = os.path.expanduser('~')
 working_dir = "."
-log_file = os.path.join(home_dir, working_dir, 'syslog.txt')
+log_file = os.path.join(home_dir, working_dir, 'syslog.log')
 
 # Python Dictionaries
 error_dict = {}
