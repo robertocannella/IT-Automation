@@ -1,4 +1,4 @@
-# Debugging Techniques Bash/Python
+# Debugging Resources Techniques Bash/Python
 
 ## General steps
 Ensure documentation through each of the following steps
@@ -52,6 +52,7 @@ Some tools to help find the root cause
 
     ```
 <hr>
+
 ## Addressing Slowness
 
 Identifying an application bottleneck
@@ -67,4 +68,22 @@ Identifying a hardware slowdown
 
     `iftop`: Listens to the network traffic on specific interface and displays bandwidth usage in the table. [more...](https://linux.die.net/man/8/iftop)
 
+## Memory Access Times
+
+Fastest readtime: CPU internal memory
+
+Fast readtime: RAM 
+
+Slow readtime: DISK
+
+Slows readtime: NETWORK
+
+`cache`: A cache stores data in a form that's faster to access than its original form.
+
+What happens when you run out of RAM? At first, the OS will just remove from RAM anything that's cached, but not strictly necessary. If there's still not enough RAM after that, the operating system will put the parts of the memory that aren't currently in use onto the hard drive in a space called swap. Reading and writing from disk is much slower than reading and writing from RAM
+
+
+## Web Server Debugging
+
+`ap`(apache benchmark): ab is a tool for benchmarking your Apache Hypertext Transfer Protocol (HTTP) server.[more...](https://httpd.apache.org/docs/2.4/programs/ab.html)
 
