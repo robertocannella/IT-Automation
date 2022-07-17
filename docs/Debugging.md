@@ -28,10 +28,10 @@ Identifying an application bottleneck
 Identifying a hardware slowdown
 * CPU | disk I/O | network connection | graphics card
 
-`top`: This tool let's us see which currently running processes are using the most CPU time
+    `top`: This tool let's us see which currently running processes are using the most CPU time [more...](https://man7.org/linux/man-pages/man1/top.1.html)
 
-`iotop`: Displays read and write speeds of a storage device, the percentage of time the process spent waiting for I/O, etc.
+    `iotop`: Displays read and write speeds of a storage device, the percentage of time the process spent waiting for I/O, etc. [more...](https://linux.die.net/man/1/iotop)
 
-`iftop`: Listens to the network traffic on specific interface and displays bandwidth usage in the table.
+    `iftop`: Listens to the network traffic on specific interface and displays bandwidth usage in the table. [more...](https://linux.die.net/man/8/iftop)
 
 
