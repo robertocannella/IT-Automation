@@ -87,3 +87,12 @@ What happens when you run out of RAM? At first, the OS will just remove from RAM
 
 `ap`(apache benchmark): ab is a tool for benchmarking your Apache Hypertext Transfer Protocol (HTTP) server.[more...](https://httpd.apache.org/docs/2.4/programs/ab.html)
 
+## Process Priority
+
+`renice`: alter priority of running processes. [more...](https://man7.org/linux/man-pages/man1/renice.1.html)
+
+shell script:
+
+    ```
+    for pid in $( pidof <command>); do renice 19 $pid; done
+    ```
