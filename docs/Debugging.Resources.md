@@ -23,7 +23,7 @@ Check out the following links for more information:
 
 [Performance Monitor on Windows10](https://www.windowscentral.com/how-use-performance-monitor-windows-10)
 
-[Performance Monitor on Windows7](https://www.digitalcitizen.life/how-use-resource-monitor-windows-7)
+[Resource Monitor on Windows7](https://www.digitalcitizen.life/how-use-resource-monitor-windows-7)
 
 [Microsoft Process Explorer](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer)
 
@@ -96,9 +96,9 @@ Fastest readtime: CPU internal memory
 
 Fast readtime: RAM 
 
-Slow readtime: DISK
+Slower readtime: DISK
 
-Slows readtime: NETWORK
+Slowest readtime: NETWORK
 
 
 **Cache**: A cache stores data in a form that's faster to access than its original form. [more...](https://en.wikipedia.org/wiki/Cache_(computing))
@@ -108,7 +108,7 @@ What happens when you run out of RAM? At first, the OS will just remove from RAM
 
 ## Web Server Debugging
 
-`ap`(apache benchmark): ab is a tool for benchmarking your Apache Hypertext Transfer Protocol (HTTP) server.[more...](https://httpd.apache.org/docs/2.4/programs/ab.html)
+`ab`(apache benchmark): ab is a tool for benchmarking your Apache Hypertext Transfer Protocol (HTTP) server.[more...](https://httpd.apache.org/docs/2.4/programs/ab.html)
 
 ## Process Priority
 
