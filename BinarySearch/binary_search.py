@@ -8,16 +8,20 @@ def binary_search(list, key):
 
     List must be sorted.
     """
+    print(list,int(key))
     left = 0
     right = len(list) - 1
+
     while left <= right:
         middle = (left + right) // 2
-
-        if list[middle] == key:
+        print('middle: ',middle)
+        print('right:', right)
+        print('left', left)
+        if int(list[middle]) == key:
             return middle
-        if list[middle] > key:
+        if int(list[middle]) > key:
             right = middle - 1
-        if list[middle] < key:
+        if int(list[middle]) < key:
             left = middle + 1
     return -1
 
@@ -30,7 +34,7 @@ def main():
                 continue
             args.append(thing)
         key = args.pop(-1)
-        print("Key of {} is {}".format(key,binary_search(args,key)))
+        print("Key of {} is {}".format(key,binary_search(args,int(key))))
     else:
         print("enter a list of numbers,  followed by a key")
         sys.exit(1)
