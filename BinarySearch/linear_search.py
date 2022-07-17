@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 import sys
-len = len(sys.argv)
+args_len  = len(sys.argv)
 
 def linear_search(list, key):
     """If key is in the list returns its position in the list, otherwise returns -1."""
@@ -11,7 +11,7 @@ def linear_search(list, key):
     return -1
 
 def main():
-    if len > 1:
+    if args_len > 1:
         list = []
         for thing in sys.argv:
             list.append(thing)
