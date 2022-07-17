@@ -1,3 +1,3 @@
 # Debugging Techniques
 
-Searching log files:
+File to hold debugging principles
