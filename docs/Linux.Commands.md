@@ -2,6 +2,9 @@
 
 
 ## Utility
+`ps` displays information about a selection of the active processes.
+
+`top` display Linux processes
 
 `wc <file_name>`: counts the amount of characters, words, and lines in the given file; can also count the same values of whatever it receives via stdin
 
@@ -17,6 +20,7 @@
 `uptime`: shows how long the computer has been running
 
 ## Networking 
+
 
 <hr>
 
