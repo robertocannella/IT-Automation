@@ -19,6 +19,16 @@
 
 `uptime`: shows how long the computer has been running
 
+`killall`: sends a signal to all processes running any of the specified commands. If no signal name is specified, `SIGTERM` is sent
+<table><th>Signal Name</th><th>Signal value</th><th>Effect</th>
+<tr><td>SIGHUP</td><td>1</td><td>Hangup</td></tr>
+<tr><td>SIGINT</td><td>2</td><td>Interrupt from keyboard</td></tr>
+<tr><td>SIGKILL</td><td>9</td><td>Kill signal</td></tr>
+<tr><td>SIGTERM</td><td>15</td><td>Termination signal</td></tr>
+<tr><td>SIGSTOP</td><td>17,19,23</td><td>Stop the process</td></tr>
+</table>
+	
+
 ## Networking 
 
 
@@ -38,4 +48,4 @@
 
 ## Python Modules
 
-**Glob**: The glob module finds all the pathnames matching a specified pattern according to the rules used by the Unix shell, although results are returned in arbitrary order. Akin to taking advantage of star [*] in BASH.
+`glob`: The glob module finds all the pathnames matching a specified pattern according to the rules used by the Unix shell, although results are returned in arbitrary order. Akin to taking advantage of star [*] in BASH.
