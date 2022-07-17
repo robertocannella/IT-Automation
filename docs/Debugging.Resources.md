@@ -1,5 +1,7 @@
 # Debugging Resources Techniques Bash/Python
 
+Contians useful resources and samples of typical debugging/resource improvement techniques.
+
 ## General steps
 Ensure documentation through each of the following steps
 * Gather Information 
@@ -7,6 +9,26 @@ Ensure documentation through each of the following steps
 * Long term remediation/prevention
 
 <hr>
+
+## Monitoring resources
+Check out the following links for more information:
+
+[Mircrosoft Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
+
+[Linux Performance](http://www.brendangregg.com/linuxperf.html)
+
+[The USE Method](http://brendangregg.com/usemethod.html)
+
+[Activity Monitor in Mac](https://support.apple.com/en-au/guide/activity-monitor/welcome/mac)
+
+[Performance Monitor on Windows10](https://www.windowscentral.com/how-use-performance-monitor-windows-10)
+
+[Performance Monitor on Windows7](https://www.digitalcitizen.life/how-use-resource-monitor-windows-7)
+
+[Microsoft Process Explorer](https://docs.microsoft.com/en-us/sysinternals/downloads/process-explorer)
+
+
+[nice levels](https://www.reddit.com/r/linux/comments/d7hx2c/why_nice_levels_are_a_placebo_and_have_been_for_a/)
 
 ## System Tools
 
@@ -78,7 +100,8 @@ Slow readtime: DISK
 
 Slows readtime: NETWORK
 
-`cache`: A cache stores data in a form that's faster to access than its original form.
+
+**Cache**: A cache stores data in a form that's faster to access than its original form. [more...](https://en.wikipedia.org/wiki/Cache_(computing))
 
 What happens when you run out of RAM? At first, the OS will just remove from RAM anything that's cached, but not strictly necessary. If there's still not enough RAM after that, the operating system will put the parts of the memory that aren't currently in use onto the hard drive in a space called swap. Reading and writing from disk is much slower than reading and writing from RAM
 
