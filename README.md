@@ -13,6 +13,12 @@ This repository is comprised of code and examples from the Google IT Automation 
 
 ### Capstone: 
 
+### Binary Search:
+Examples of code for:
+* linear search algorithm
+* binary search algorithm
+* recursive binary search
+
 ### Log Analysis:
 * Parse a syslog file and store contents into python dictionary
 * Write contents to CSV file
