@@ -22,6 +22,9 @@ sys	0m0.003s
 * user - amount of CPU time spent in user mode.
 * system or sys - amount of CPU time spent in kernel mode.
 
-## Parallel Operations
+## Concurrency /  Parallel Operations
+
+[more...](https://realpython.com/python-concurrency/)
 
 
+* `aiosync`

@@ -1,6 +1,6 @@
 # Debugging Resources Techniques Bash/Python
 
-Contians useful resources and samples of typical debugging/resource improvement techniques.
+Contains useful resources and samples of typical debugging/resource improvement techniques.
 
 ## General steps
 Ensure documentation through each of the following steps
@@ -13,7 +13,7 @@ Ensure documentation through each of the following steps
 ## Monitoring resources
 Check out the following links for more information:
 
-[Mircrosoft Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
+[Microsoft Process Monitor](https://docs.microsoft.com/en-us/sysinternals/downloads/procmon)
 
 [Linux Performance](http://www.brendangregg.com/linuxperf.html)
 
@@ -33,20 +33,21 @@ Check out the following links for more information:
 ## System Tools
 
 Some tools to help find the root cause
-* `strace <file_name>`:   Calls that the programs running on our computer make to the kernel
+* `strace <file_name>` [bash] :   Calls that the programs running on our computer make to the kernel
 
     ```
         strace -o <output_file> <executable_file>
         strace <executable_file> | less
     ```
-    In the simplest case strace runs the specified command until it exits.  It intercepts and records the system calls which arecalled by a process and the signals which are received by a process.  The name of each system call, its arguments and its return value are printed on standard error or to the filespecified with the -o option. [more...](https://man7.org/linux/man-pages/man1/strace.1.html)
+    In the simplest case strace runs the specified command until it exits.  It intercepts and records the system calls which are called by a process and the signals which are received by a process.  The name of each system call, its arguments and its return value are printed on standard error or to the file specified with the -o option. [more...](https://man7.org/linux/man-pages/man1/strace.1.html)
 
-* `psutil` (process and system utilities): a cross-platform library for retrieving information on running processes and system utilization (CPU, memory, disks, network, sensors) in Python. [more...](https://pypi.org/project/psutil/)
+
+* `psutil`[python] (process and system utilities): a cross-platform library for retrieving information on running processes and system utilization (CPU, memory, disks, network, sensors) in python. [more...](https://pypi.org/project/psutil/)
     * `psutil.cpu_percent()`: shows that CPU utilization
     * `psutil.disk_io_counters()`: byte read and write for disk I/O
-    * `psutil.net_io_counters()`: byte received and send for newtork I/O bandwidth
+    * `psutil.net_io_counters()`: byte received and send for network I/O bandwidth
 
-* `rsync` (remote sync): a utility for efficiently transferring and synchronizing files between a computer and an external hard drive and across networked computers by comparing the modification time and size of files. [more1...](https://linux.die.net/man/1/rsync) [2...](linuxtechi.com/rsync-command-examples-linux/)
+* `rsync` [bash] (remote sync): a utility for efficiently transferring and synchronizing files between a computer and an external hard drive and across networked computers by comparing the modification time and size of files. [more1...](https://linux.die.net/man/1/rsync) [2...](linuxtechi.com/rsync-command-examples-linux/)
     ```
         rsync -zvh [Source-Files-Dir] [Destination] # copy/sync files locally
         rsync -zavh [Source-Files-Dir] [Destination] # copy/sync directories locally
@@ -73,6 +74,7 @@ Some tools to help find the root cause
     subprocess.call(["rsync", "-arq", src, dest]) # copy/sync locally
 
     ```
+* `os.walk()`: Python method walk() generates the file names in a directory tree by walking the tree either top-down or bottom-up.
 <hr>
 
 ## Addressing Slowness
