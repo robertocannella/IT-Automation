@@ -1,4 +1,4 @@
-# Git Commands
+# Helpful Git Commands
 
 
 ## diff commands
@@ -17,4 +17,11 @@
 
     #Another cool feature is whatchanged command
     git whatchanged -- <path>
+```
+
+## Rename Case Sensitive
+
+```
+    git mv casesensitive tmp
+    git mv tmp CaseSensitive
 ```
