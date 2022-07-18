@@ -26,5 +26,7 @@ sys	0m0.003s
 
 [more...](https://realpython.com/python-concurrency/)
 
-
+* `Pool`
+* `multiprocessing`
 * `aiosync`
+

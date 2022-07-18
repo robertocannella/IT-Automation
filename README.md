@@ -11,11 +11,16 @@ This repository is comprised of code and examples from the Google IT Automation 
 
 ## Projects
 
+### Capstone: 
+
 ### Log Analysis:
 * Parse a syslog file and store contents into python dictionary
 * Write contents to CSV file
 * Convert CSV file into HTLM document/report
 
-### Capstone
-
+### Performance Tooling
+* Identify what limits the system performance: I/O, Network, CPU, or Memory
+* Use rsync command instead of cp to transfer data
+* Get system standard output and manipulate the output
+* Find differences between threading and multiprocessing
 

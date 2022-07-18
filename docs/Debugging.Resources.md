@@ -47,33 +47,6 @@ Some tools to help find the root cause
     * `psutil.disk_io_counters()`: byte read and write for disk I/O
     * `psutil.net_io_counters()`: byte received and send for network I/O bandwidth
 
-* `rsync` [bash] (remote sync): a utility for efficiently transferring and synchronizing files between a computer and an external hard drive and across networked computers by comparing the modification time and size of files. [more1...](https://linux.die.net/man/1/rsync) [2...](linuxtechi.com/rsync-command-examples-linux/)
-    ```
-        rsync -zvh [Source-Files-Dir] [Destination] # copy/sync files locally
-        rsync -zavh [Source-Files-Dir] [Destination] # copy/sync directories locally
-        rsync -zrvh [Source-Files-Dir] [Destination] # copy files and directories recursively
-    ```
-    <table>
-        <th>Options</th><th>Uses</th>
-        <tr><td>-v</td><td>Verbose output</td></tr>
-        <tr><td>-q</td><td>Suppress message output</td></tr>
-        <tr><td>-a</td><td>Archive files and directory while synchronizing</td></tr>
-        <tr><td>-r</td><td>Sync files and directories recursively</td></tr>
-        <tr><td>-b</td><td>Take the backup during synchronization</td></tr>
-        <tr><td>-z</td><td>Compress file data during the transfer</td></tr>
-    <table>
-
-    Calling from python script
-
-    ```
-    import subprocess
-
-    src = "<source-path>"
-    dest = "<destination-path>"
-
-    subprocess.call(["rsync", "-arq", src, dest]) # copy/sync locally
-
-    ```
 * `os.walk()`: Python method walk() generates the file names in a directory tree by walking the tree either top-down or bottom-up.
 <hr>
 
