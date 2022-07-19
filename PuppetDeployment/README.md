@@ -186,3 +186,52 @@ cat /tmp/machine_info.txt
 ## Reboot machine
 
 For the last exercise, we will be creating a new module named reboot, that checks if a node has been online for more than 30 days. If so, then reboot the computer.
+
+Our first step is to create a directory to hold the new reboot module:
+```
+sudo mkdir -p /etc/puppet/code/environments/production/modules/reboot/manifests
+```
+
+The way to reboot a computer depends on the OS that it's running. So, you'll set a variable that has one of the following reboot commands, based on the kernel fact:
+
+* shutdown /r on windows
+* shutdown -r now on Darwin (macOS)
+* reboot on Linux.
+
+Inside this directory, create a file called `init.pp` and add the following content:
+
+```
+class reboot {
+  if $facts[kernel] == "windows" {
+    $cmd = "shutdown /r"
+  } elsif $facts[kernel] == "Darwin" {
+    $cmd = "shutdown -r now"
+  } else {
+    $cmd = "reboot"
+  }
+  if $facts[uptime_days] > 30 {
+    exec { 'reboot':
+      command => $cmd,
+     }
+   }
+}
+```
+
+Finally, to get this module executed, make sure to include it in the site.pp file:
+`/etc/puppet/code/environments/production/manifests/site.pp`
+
+Let's add a line to include the reboot module:
+
+```
+node default {
+   class { 'packages': }
+   class { 'machine_info': }
+   class { 'reboot': }
+}
+```
+...and then run the client on linux-instance:
+```
+sudo puppet agent -v --test
+```
+
+This completes this project.
