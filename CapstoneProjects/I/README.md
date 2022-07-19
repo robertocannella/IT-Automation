@@ -9,7 +9,12 @@ Your company is in the process of updating its website, and they’ve hired a de
 What you’ll do
 Use the Python Imaging Library to do the following to a batch of images:
 
-* Open an image
+* Open an image 
 * Rotate an image
 * Resize an image
 * Save an image in a specific format in a separate directory 
+
+## Packages used
+
+`os`: 
+`pillow`
