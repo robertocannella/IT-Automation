@@ -12,6 +12,7 @@ This repository is comprised of code and examples from the Google IT Automation 
 ## Projects
 
 ### Capstone: 
+    N/A
 
 ### Binary Search:
 Examples of code for:
@@ -30,3 +31,10 @@ Examples of code for:
 * Get system standard output and manipulate the output
 * Find differences between threading and multiprocessing
 
+### Puppet Deployment
+* Understanding Puppet rules
+* Fetch machine information
+* Reboot machine exercise
+
+### Cloud 
+    N/A
