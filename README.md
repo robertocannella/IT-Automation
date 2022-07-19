@@ -5,14 +5,19 @@ This repository is comprised of code and examples from the Google IT Automation 
 * Linux commands 
 * Integrated testing
 * Debugging practices
-* Advanced git usage
+* Configuration Management using Puppet
+* Cloud services 
+* Git usage
 
 
 
 ## Projects
 
-### Capstone: 
-    N/A
+### Capstone Projects
+1. Scale and convert images using PIL
+2. Process Text Files with Python Dictionaries and Upload to Running Web Service
+3. Automatically Generate a PDF and send it by Email
+4. Automate updating catalog information
 
 ### Binary Search:
 Examples of code for:
@@ -36,5 +41,3 @@ Examples of code for:
 * Fetch machine information
 * Reboot machine exercise
 
-### Cloud 
-    N/A
