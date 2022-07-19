@@ -36,6 +36,7 @@
 
 ## System
 
+`systemctl`: The systemctl command is a utility which is responsible for examining and controlling the systemd system and service manager.[more...](https://www.liquidweb.com/kb/what-is-systemctl-an-in-depth-overview/)
 
 <hr>
 
