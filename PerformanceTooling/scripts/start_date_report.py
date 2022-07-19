@@ -32,7 +32,7 @@ def get_file_lines(url):
         lines.append(line.decode("UTF-8"))
     return lines
 
-def get_same_or_newer_dict(data):
+def get_data_as_sorted_list(data):
     reader = csv.reader(data[1:])
     employee_dict = {}
     for row in reader:
@@ -81,7 +81,6 @@ def get_same_or_newer(start_date,data):
     return min_date, min_date_employees
 
 def list_newer(start_date,data):
-    get_same_or_newer_dict(data)
     while start_date < datetime.datetime.today():
         start_date, employees = get_same_or_newer(start_date,data)
         print("Started on {}: {}".format(start_date.strftime("%b %d, %Y"), employees))
@@ -89,8 +88,8 @@ def list_newer(start_date,data):
         # Now move the date to the next one
         start_date = start_date + datetime.timedelta(days=1)
 
-def list_new_dict(start_date,data):
-    sorted_employees = get_same_or_newer_dict(data)
+def display_report(start_date,data):
+    sorted_employees = get_data_as_sorted_list(data)
     for index, record in enumerate(sorted_employees):
         record_date = datetime.datetime.strptime(record[0],"%Y-%m-%d")
         if record_date > start_date:
@@ -101,7 +100,7 @@ def list_new_dict(start_date,data):
 def main():
     data = get_file_lines(FILE_URL)
     start_date = get_start_date()
-    list_new_dict(start_date,data)
+    display_report(start_date,data)
 
 
 if __name__ == "__main__":
