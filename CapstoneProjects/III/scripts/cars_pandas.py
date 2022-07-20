@@ -36,6 +36,8 @@ def process_data_frames(df):
   max_sales_by_year_index = sales_by_year['total_sales'].idxmax()
   max_sales_by_year = sales_by_year.loc[max_sales_by_year_index]
 
+
+
   summary = [
     "The {} generated the most revenue: ${}".format(format_car_df(max_revenue), max_revenue['total_revenue'] ),
     "The {} had the most sales: {}".format(format_car_df(max_sales), max_sales["total_sales"]),
@@ -43,7 +45,10 @@ def process_data_frames(df):
   ]
   return summary
 
-
+def get_max_sales_by_car(df):
+  # Group by car make
+  max_sales =  df.groupby(df['car.car_make'])['total_sales'].sum().reset_index()
+  return max_sales.sort_values('total_sales', ascending=False)
 def format_car_df(car):
   """Given a car dataframe, returns a nicely formatted name."""
   return "{} {} ({})".format(
@@ -55,7 +60,7 @@ def cars_dataframe_to_table(car_data):
   car_data = car_data.sort_values(by=['total_sales'], ascending=False)
   table_data = [["ID", "Car", "Price", "Total Sales"]]
   for index,row in car_data.iterrows():
-    table_data.append(['index', format_car_df(row), row["price"], row["total_sales"]])
+    table_data.append([index, format_car_df(row), row["price"], row["total_sales"]])
   return table_data
 
 
@@ -73,9 +78,12 @@ def main(argv):
   print(summary_df)
 
   # Generate PDF 
+  # Year with the most sales (Optional Task)
+  max_sales_by_car = get_max_sales_by_car(df)
+
   cars_list = cars_dataframe_to_table(df)
   body = "<br/>".join(summary_df)
-  reports.generate('/tmp/cars.pdf','Sales summary for last month', body , cars_list)
+  reports.generate('/tmp/cars.pdf','Sales summary for last month', body , cars_list, max_sales_by_car)
 
   # Send the PDF report as an email attachment
   sender = 'automation@example.com'
@@ -85,7 +93,7 @@ def main(argv):
   attachment_path = '/tmp/cars.pdf'
 
   email = emails.generate(sender,recipient, subject, body, attachment_path)
-  print(email)
+  #print(email)
   #emails.send(email)
 
 if __name__ == "__main__":
