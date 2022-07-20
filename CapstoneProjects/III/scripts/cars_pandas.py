@@ -1,11 +1,8 @@
 #!/usr/bin/env python3
 
-from distutils.command.install_egg_info import to_filename
 import json
-import locale
-from pty import slave_open
 import sys
-import operator
+from queries import get_top_revenue
 import reports
 import emails
 import pandas as pd
@@ -81,9 +78,13 @@ def main(argv):
   # Year with the most sales (Optional Task)
   max_sales_by_car = get_max_sales_by_car(df)
 
+  # Get top 10 in revenue:
+  top_ten = get_top_revenue(df,10)
+
+
   cars_list = cars_dataframe_to_table(df)
   body = "<br/>".join(summary_df)
-  reports.generate('/tmp/cars.pdf','Sales summary for last month', body , cars_list, max_sales_by_car)
+  reports.generate('/tmp/cars.pdf','Sales summary for last month', body , cars_list, max_sales_by_car, top_ten)
 
   # Send the PDF report as an email attachment
   sender = 'automation@example.com'
