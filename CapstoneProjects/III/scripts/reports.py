@@ -4,15 +4,16 @@ from reportlab.platypus import SimpleDocTemplate
 from reportlab.platypus import Paragraph, Spacer, Table, Image
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.lib import colors
-
 # For Pie Chart
 from reportlab.graphics.shapes import Drawing
 from reportlab.graphics.charts.piecharts import Pie
-
-
 # For Bar Chart
 from reportlab.graphics.charts.barcharts import VerticalBarChart
 import pandas
+
+
+
+# Methods Start Here
 
 def generate_total_sales_pie_chart(table_data):
   d = Drawing(250,250) # width, height
@@ -29,12 +30,12 @@ def generate_total_sales_pie_chart(table_data):
   d.add(pc)
   return d
   
-
 def generate_total_sales_bar_chart(table_data):
   drawing = Drawing(400, 200)
-  #data = table_data['total_sales'].tolist()[:10]
+  # Expand the first 10 items from the table_data 
   data = [table_data['total_sales'].tolist()[:10] ]
 
+  # Bar chart configuration
   bc = VerticalBarChart()
   bc.x = 75
   bc.y = 50
@@ -44,10 +45,12 @@ def generate_total_sales_bar_chart(table_data):
   bc.strokeColor = colors.black
   bc.bars[(0,)].fillColor = colors.cornflowerblue
 
+  # The range of our y-axis 
   bc.valueAxis.valueMin = table_data['total_sales'][:10].min() - 1000
   bc.valueAxis.valueMax = table_data['total_sales'][:10].max() + 1000
   bc.valueAxis.valueStep = 3000
 
+  # Label Configuration
   bc.categoryAxis.labels.boxAnchor = 'ne'
   bc.categoryAxis.labels.dx = 0
   bc.categoryAxis.labels.dy = -2
@@ -56,7 +59,6 @@ def generate_total_sales_bar_chart(table_data):
 
   drawing.add(bc)
   return drawing
-
 
 def generate(filename, title, additional_info, table_data, max_sales_by_car):
   styles = getSampleStyleSheet()
