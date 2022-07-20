@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 
+from distutils.command.install_egg_info import to_filename
 import json
 import locale
+from pty import slave_open
 import sys
 import operator
 import reports
@@ -14,12 +16,49 @@ def load_data(filename):
     data = json.load(json_file)
   return data
 
+def process_data_frames(data):
+  # Set up the dataframe (collapse nested objects)
+  df = pd.json_normalize(data)
+  df = df.set_index('id')
+  
+  # Sort by total_sales (additional project task item)
+  df = df.sort_values(by=['total_sales'], ascending=False)
 
+  # create a total_revenue column to get max_revenue
+  df['price'] = df['price'].str.strip("$")
+  df['total_revenue'] = df['price'].astype(float) * df['total_sales'].astype(float)
+  df = df.sort_values(by=['total_revenue'], ascending=False)
+
+  # Car with the most total revenue
+  max_revenue_index = df['total_revenue'].idxmax()
+  max_revenue = df.loc[max_revenue_index]
+
+  # Car with the most total sales
+  max_sales_index = df['total_sales'].idxmax()
+  max_sales = df.loc[max_sales_index]
+
+  # Year with the most sales
+    # Group by year
+  sales_by_year = df.groupby(df['car.car_year'])['total_sales'].sum().reset_index()
+  max_sales_by_year_index = sales_by_year['total_sales'].idxmax()
+  max_sales_by_year = sales_by_year.loc[max_sales_by_year_index]
+
+  summary = [
+    "The {} generated the most revenue: ${}".format(format_car_df(max_revenue), max_revenue['total_revenue'] ),
+    "The {} had the most sales: {}".format(format_car_df(max_sales), max_sales["total_sales"]),
+    "The most popular year was {} with {} sales.".format(max_sales_by_year['car.car_year'], max_sales_by_year['total_sales'])
+  ]
+  return summary
 
 def format_car(car):
   """Given a car dictionary, returns a nicely formatted name."""
   return "{} {} ({})".format(
       car["car_make"], car["car_model"], car["car_year"])
+
+def format_car_df(car):
+  """Given a car dataframe, returns a nicely formatted name."""
+  return "{} {} ({})".format(
+      car["car.car_make"], car["car.car_model"], car["car.car_year"])
 
 def process_data(data):
   """Analyzes the data, looking for maximums.
@@ -64,18 +103,23 @@ def cars_dict_to_table(car_data):
   return table_data
 
 def main(argv):
+  
+
+
   """Process the JSON data and generate a full report out of it."""
-  data = load_data("car_sales.json")
-  df = pd.read_json("car_sales.json")
-  df = df.sort_values(by=['total_sales'], ascending=False)
-  print(df['car'])
+  data = load_data("data/car_sales.json")
+  #df = pd.read_json("data/car_sales.json")
+  summary_df = process_data_frames(data)
+  print(summary_df)
+
+
   summary = process_data(data)
+ 
   print(summary)
   # TODO: turn this into a PDF report
 
   cars_data = cars_dict_to_table(data)
-
-  pdf_summary = []
+  print(len(cars_data))
   reports.generate('/tmp/cars.pdf','Sales summary for last month', "<br/>".join(summary) , cars_data)
   # TODO: send the PDF report as an email attachment
   sender = 'automation@example.com'
