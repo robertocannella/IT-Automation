@@ -84,5 +84,5 @@ def main():
             email = emails.generate_email_no_attachment(sender, recipient, msg, body)
             emails.send_message(email)
 
-if __name__ == '__main__'():
+if __name__ == '__main__':
     main()
