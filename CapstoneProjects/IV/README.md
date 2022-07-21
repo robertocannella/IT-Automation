@@ -17,3 +17,57 @@ What you’ll do
 * Generate a PDF using Python
 * Automatically send a PDF by email 
 * Write a script to check the health status of the system 
+
+
+code structure:
+
+```
+~/  
+ |- download_drive_file.sh
+ |- example_upload.py
+ |- supplier-data.tar.gz
+ |- supplier_data.....
+ |                   |- descriptions/00*.txt
+ |                   |- images/*.tiff
+ |                   |- images/*.jpeg
+ |- example_upload.py
+
+/scripts|
+        |_ changeImage.py
+        |               |- get_images_as_list(path)
+        |               |- resize_and_format(image_list)
+        |               |- main
+        |                       |-get_images_as_list(path)
+        |                       |-resize_and_format(image_list)
+        |_ reports.py
+        |           |- generate_report(args[1,2,3])
+        |
+        |_ report_email.py
+        |           |- main 
+        |                   |- reports.generate_report([args 1,2,3])
+        |                   |- emails.generate_email([args 1,2,3,4,5])
+        |                   |- emails.send_email()
+        |
+        |_ emails.py
+        |           |- generate_email_no_attachment([args 1,2,3,4])
+        |           |- generate_email([args 1,2,3,4,5])
+        |           |- send_email()
+        |
+        |- supplier_image_upload.py
+        |           |- upload_image(path, url)
+        |
+        |_ run.py 
+        |           |- upload_description(path,url)
+        |
+        |_ health_check.py
+                    |- check_cpu_constrained(min_percent)
+                    |- check_disk_full(disk, min_percent)
+                    |- check_memfree(min_amount)
+                    |- check_resolve_addr(hostname,addr)
+                    |- main
+                            |- check_cpu_constrained(min_percent)
+                            |- check_disk_full(disk, min_percent)
+                            |- check_memfree(min_amount)
+                            |- check_resolve_addr(hostname,addr)                            
+
+``` 
