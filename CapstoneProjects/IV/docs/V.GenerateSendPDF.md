@@ -132,6 +132,15 @@ function generate_email(sender, recipient, subject, body, attachment_path){
 end
 }
 
+function generate_email_no_attachment(sender, recipient, subject, body){
+
+    create email.message object
+        set FROM, TO, SUBJECT, CONTENT
+    return message
+    
+end
+}
+
 function send_email(){
 
     set mail_server
@@ -182,6 +191,7 @@ files structure
         |                   |- emails.send_email()
         |
         |_ emails.py
+                    |- generate_email_no_attachment([args 1,2,3,4])
                     |- generate_email([args 1,2,3,4,5])
                     |- send_email()
 
