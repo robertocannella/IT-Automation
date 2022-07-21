@@ -1,6 +1,6 @@
 # Capstone Project Four
 
-## Automatically Generate a PDF and send it by Email
+## Automate updating catalog information
 
 *Introduction*
 
