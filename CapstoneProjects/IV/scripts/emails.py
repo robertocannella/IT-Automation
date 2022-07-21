@@ -3,6 +3,18 @@ import mimetypes
 import os.path
 import smtplib
 
+def generate_email_no_attachment(sender, recipient, subject, body):
+  """Creates an email without an attachment"""
+  # Basic Email formatting
+  message = email.message.EmailMessage()
+  message["From"] = sender
+  message["To"] = recipient
+  message["Subject"] = subject
+  message.set_content(body)
+
+  return message
+
+
 def generate_email(sender, recipient, subject, body, attachment_path):
   """Creates an email with an attachment."""
   # Basic Email formatting
