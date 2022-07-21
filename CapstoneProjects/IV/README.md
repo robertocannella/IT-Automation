@@ -61,12 +61,12 @@ code structure:
         |
         |_ health_check.py
                     |- check_cpu_constrained(min_percent)
-                    |- check_disk_full(disk, min_percent)
+                    |- check_disk_percent(disk, min_percent)
                     |- check_memfree(min_amount)
                     |- check_resolve_addr(hostname,addr)
                     |- main
                             |- check_cpu_constrained(min_percent)
-                            |- check_disk_full(disk, min_percent)
+                            |- check_disk_percent(disk, min_percent)
                             |- check_memfree(min_amount)
                             |- check_resolve_addr(hostname,addr)                            
 

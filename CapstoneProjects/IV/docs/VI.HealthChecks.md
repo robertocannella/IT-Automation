@@ -62,11 +62,10 @@ Libraries
 function check_cpu_constrained(min_percent){
 
     return psutil.cpu_percent > min_percent
-
 end
 }
 
-function check_disk_full(disk, min_percent){
+function check_disk_percent(disk, min_percent){
 
     set du to  shutil.disk_usage(disk)
     calculate percent free = du.free / du.total
@@ -78,11 +77,13 @@ function check_memfree(min_amount){
 
     v_mem = psutil.virtual_memory()
     return v_mem.available > min_amount
-
+end
 }
+
 function check_resolve_addr(hostname,addr){
 
     return socket.gethostbyname(hostname) is not addr
+end
 }
 
 function main(){
@@ -96,4 +97,5 @@ function main(){
         if check() is true
             email emails.generate_email_no_attachment(sender, recipient, subject(message), body)
             emails.send
+end
 }
