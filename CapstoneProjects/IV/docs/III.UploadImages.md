@@ -40,3 +40,5 @@ function upload_image(path, url){
 end
 }
 ```
+
+Now check out that the file was uploaded to the web server by visiting the URL `[linux-instance-IP-Address]/media/images/`, followed by clicking on the file name.
