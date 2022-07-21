@@ -38,22 +38,59 @@ Libraries:
     from reportlab.platypus import Paragraph, Spacer, Table, Image
     from reportlab.lib.styles import getSampleStyleSheet
 
-function generate_report(paragraph, title, attachment ){
+function generate_report(paragraph, title, attachment_path, data_path){
 
     create a report object form SimpleDocTemplate
     set report_title
     set report_paragraph
     build report as processed.pdf
+
+    return processed.pdf
     
 end
 }
-
 ```
-
-
 Create another script named `report_email.py` to process supplier fruit description data from `supplier-data/descriptions` directory. 
 
-TODO: pseudo code report_email.py
+
+pseudo code report_email.py
+```
+Libraries:
+    os
+    datetime
+    reports
+    emails
+
+function process_body(){
+
+    create a empty keys lists 
+    create an empty body string
+    store files into a list
+
+    loop through each file, opening it with read attribute
+        enumerate through each line of the file
+            append the string with keys[index]: line[index]
+
+    return body string 
+end
+}
+
+function main(){
+
+    report = reports.generate_report(paragraph, title, attachment_path, data_path)
+    emails.generate_email()
+    emails.send()
+
+
+end    
+}
+```
+
+```
+if __name__ == "__main__":
+    reports.generate_report(attachment, title, paragraph)
+    emails.generate_email()
+```
 
 Import all the necessary libraries(os, datetime and reports) that will be used to process the text data from the `supplier-data/descriptions` directory into the format above.
 
@@ -65,12 +102,44 @@ You will need to pass the following arguments to the `reports.generate_report` m
  * the report title as the title argument 
  * the file path of the PDF to be generated as the attachment argument (use `‘/tmp/processed.pdf'`)
 
-TODO: pseudo code
+pseudo code emails.py
+```
+Libraries:
+    email.message
+    mimetypes
+    os.path
+    smtplib
+
+function generate_email(sender, recipient, subject, body, attachment_path){
+
+    create email.message object
+        set FROM, TO, SUBJECT, CONTENT
+
+    process attachment
+        use guess mime type 
+    
+    add attachment to email
+        set maintype
+        set subtype
+        set filename
+    
+    return message
+    
+end
+}
+
+function send_email(){
+
+    set mail_server
+    send message
+    quit mail_server
+
+end    
+}
 
 ```
-if __name__ == "__main__":
-    reports.generate_report(attachment, title, paragraph)
-```
+
+
 
 Once the PDF is generated, you need to send the email using the `emails.generate_email()` and `emails.send_email()` methods.
 
