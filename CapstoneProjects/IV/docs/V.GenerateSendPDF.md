@@ -31,11 +31,29 @@ Create a script `reports.py` to generate PDF report to supplier.
 
 Using the `reportlab` Python library, define the method `generate_report` to build the PDF reports. We have already covered how to generate PDF reports in an earlier lesson; you will want to use similar concepts to create a PDF report named processed.pdf.
 
-TODO: pseudo code
+pseudo code reports.py
+```
+Libraries:
+    from reportlab.platypus import SimpleDocTemplate
+    from reportlab.platypus import Paragraph, Spacer, Table, Image
+    from reportlab.lib.styles import getSampleStyleSheet
 
+function generate_report(paragraph, title, attachment ){
+
+    create a report object form SimpleDocTemplate
+    set report_title
+    set report_paragraph
+    build report as processed.pdf
+    
+end
+}
+
+```
 
 
 Create another script named `report_email.py` to process supplier fruit description data from `supplier-data/descriptions` directory. 
+
+TODO: pseudo code report_email.py
 
 Import all the necessary libraries(os, datetime and reports) that will be used to process the text data from the `supplier-data/descriptions` directory into the format above.
 
