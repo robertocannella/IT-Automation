@@ -1,6 +1,7 @@
 # Outline of Capstone Project 4
 
 ## Automate updating catalog information
+
 ### Part 1 - Fetching supplier data
 
 
