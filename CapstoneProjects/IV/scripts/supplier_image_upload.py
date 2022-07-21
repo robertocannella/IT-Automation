@@ -2,7 +2,7 @@
 import os
 import requests
 
-url = "localhost/upload"
+url = "localhost/upload/"
 
 HOME = os.path.expanduser("~")
 input_dir = HOME+"/supplier-data/images/"

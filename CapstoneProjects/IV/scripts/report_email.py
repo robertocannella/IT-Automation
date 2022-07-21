@@ -13,8 +13,23 @@ data_dir = HOME+'/supplier-data/descriptions/'
 attachment_path = '/tmp/processed.pdf'
 files = os.listdir(data_dir)
 
+# This from another user: https://github.com/jjaw
+def generate_pdf(path):
+  pdf = ""
+  files = os.listdir(path)
+  for file in files:
+    if file.endswith(".txt"):
+      with open(path + file, 'r') as f:
+        inline = f.readlines()
+        name = inline[0].strip()
+        weight = inline[1].strip()
+        pdf += "name: " + name + "<br/>" + "weight: " + weight + "<br/><br/>"
+  return pdf
+################################################
 
 
+# For some reason, Quicklabs didn't like my pretty table.  I spent
+# so much time on it....
 def make_pdf_body():
     for file in files:
         with open(os.path.join(data_dir, file), 'r') as fh:
@@ -43,7 +58,7 @@ def main():
 
     email = emails.generate_email(sender, recipient, subject, body, attachment_path)
     print(email)
-    #emails.send(email)
+    emails.send(email)
 
 if __name__ == "__main__":
     main()

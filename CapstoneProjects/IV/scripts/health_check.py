@@ -78,10 +78,10 @@ def main():
     # Run checks here
     for check, msg in checks:
         if check():
-            #TODO: SEND ERROR EMAIL
+
             email = emails.generate_email_no_attachment(sender, recipient, msg, body)
             print(email)
-            #emails.send_message(email)
+            emails.send_message(email)
 
 if __name__ == '__main__':
     main()

@@ -4,7 +4,7 @@ import os
 import requests
 
 
-url = "http://[CHANGE_THIS]/fruits"
+url = "http://[CHANGE_THIS]/fruits/"
 
 HOME = os.path.expanduser("~")
 input_dir = HOME+"/supplier-data/descriptions/"
