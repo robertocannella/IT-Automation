@@ -77,10 +77,13 @@ end
 
 function main(){
 
+    set report parameters
     report = reports.generate_report(paragraph, title, attachment_path, data_path)
-    emails.generate_email()
-    emails.send()
 
+    set email parameters
+    email = emails.generate_email(sender, recipient, subject, body, attachment_path)
+
+    emails.send(email)
 
 end    
 }
@@ -89,7 +92,8 @@ end
 ```
 if __name__ == "__main__":
     reports.generate_report(attachment, title, paragraph)
-    emails.generate_email()
+    emails.generate_email(sender, recipient, subject, body, attachment_path)
+    emails.send_email()
 ```
 
 Import all the necessary libraries(os, datetime and reports) that will be used to process the text data from the `supplier-data/descriptions` directory into the format above.
