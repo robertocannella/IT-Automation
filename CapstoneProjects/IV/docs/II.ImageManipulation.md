@@ -18,7 +18,6 @@ Libraries:
     sys
     Image from PIL
 
-------------------------------------------------
 
 function get_images_as_list (path){
     
@@ -34,7 +33,6 @@ function get_images_as_list (path){
 
 end
 
------------------------------------------------
 
 }
 function resize_and_format(image_list) {
