@@ -1,11 +1,10 @@
 #!/usr/bin/env python3
 
-from decimal import MIN_EMIN
 import os
 import shutil
-import sys
 from requests import socket
 import psutil
+import emails
 
 def check_reboot():
     """Returns true if the computer has a pending reboot."""
@@ -27,7 +26,7 @@ def check_disk_percent(disk, min_percent):
     du = shutil.disk_usage(disk)
     percent_free = 100 * du.free / du.total
     return percent_free < min_percent
-    
+
 def check_memfree(min_amount):
     v_mem = psutil.virtual_memory()
     return v_mem.available < min_amount
@@ -64,22 +63,26 @@ def check_cpu_constrained_multi(min_percent):
         return psutil.cpu_percent(1) > min_percent
 
 def main():
+    # Add checks heres
     checks = [
         (check_cpu_constrained, "Error - CPU usage is over 80%"),
         (check_root_full, "Root partition full."),
         (check_memfree, "Error - Available memory is less than 500MB")
         (check_no_network, "No working network"),
     ]
-    everything_ok = True
+
+    # Email notification settings
+    sender = 'automation@example.com'
+    recipient = '<CHANGE THIS PART>'
+    body = 'Please check your system and resolve the issue as soon as possible.'
+    message = ''
+
+    # Run checks here
     for check, msg in checks:
         if check():
-            print(msg)
-            everything_ok = False
+            #TODO: SEND ERROR EMAIL
+            email = emails.generate_email_no_attachment(sender, recipient, msg, body)
+            emails.send_message(email)
 
-    if not everything_ok:
-        sys.exit(1)
-
-
-    print("Everything is fantastic!")
-    sys.exit(0)
-main()
+if __name__ == '__main__'():
+    main()
