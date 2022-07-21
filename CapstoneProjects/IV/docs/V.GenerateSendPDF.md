@@ -92,8 +92,8 @@ end
 ```
 if __name__ == "__main__":
     reports.generate_report(attachment, title, paragraph)
-    emails.generate_email(sender, recipient, subject, body, attachment_path)
-    emails.send_email()
+    email = emails.generate_email(sender, recipient, subject, body, attachment_path)
+    emails.send_email(email)
 ```
 
 Import all the necessary libraries(os, datetime and reports) that will be used to process the text data from the `supplier-data/descriptions` directory into the format above.
